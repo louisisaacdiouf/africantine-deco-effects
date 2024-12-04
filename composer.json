@@ -1,0 +1,17 @@
+{
+    "name": "louis/africanium",
+    "description": "Décoration du site pour les fêtes comme Noël, Saint-Valentin, etc.",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "louisisaacdiouf",
+            "email": "louisisaacdf@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"Inc\\": "./inc"}
+    }
+}
