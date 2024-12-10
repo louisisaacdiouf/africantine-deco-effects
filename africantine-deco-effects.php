@@ -14,53 +14,33 @@ License: GPLv2 or later
 Text Domain: africantine-deco-effects
 */
 
-defined( 'ABSPATH' ) or die( 'Are you lost' );
+defined('ABSPATH') or die('Are you lost');
 
 if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 }
 
-define('PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('PLUGIN_URL', plugin_dir_url(__FILE__));
-define('PLUGIN', plugin_basename(__FILE__));
-
 if (class_exists('Inc\\Init')) {
     Inc\Init::register_services();
 }
 
-// use Inc\Activate;
-// use Inc\Deactivate;
-// use Inc\Admin\AdminPages;
+use Inc\Base\Activate;
+use Inc\Base\Deactivate;
 
-// if (!class_exists('DecoEffects')) {
-//     class DecoEffects {
-//         public $plugin;
-    
-//         function __construct() {
-//             $this->plugin = plugin_basename(__FILE__);
-//         }
-    
-//         function activate() {
-//             Activate::activate();
-//         }
-    
-//         function deactivate() {
-//             Deactivate::deactivate();
-//         }
+register_activation_hook(__FILE__, 'activate_deco_effects');
+register_deactivation_hook(__FILE__, 'deactivate_deco_effects');
 
-//         function register() {
-//             AdminPages::register();
-//         }
-//     }
-    
-//     if (class_exists('DecoEffects')) {
-//         $decoEffects = new DecoEffects();
-//         $decoEffects->register();
-    
-//         // Activation
-//         register_activation_hook(__FILE__, array($decoEffects, 'activate'));
-    
-//         // Deactivation
-//         register_deactivation_hook(__FILE__, array($decoEffects, 'deactivate'));
-//     }        
-// }
+function activate_deco_effects()
+{
+    Activate::activate();
+}
+
+function deactivate_deco_effects()
+{
+    Deactivate::deactivate();
+}
+
+add_filter('upload_mimes', function ($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+});

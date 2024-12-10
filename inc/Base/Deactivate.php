@@ -2,10 +2,12 @@
 /**
  * @package AfricantineDecoEffects
  */
-namespace Inc;
+namespace Inc\Base;
 
-class Deactivate {
-    public static function deactivate() {
+class Deactivate
+{
+    public static function deactivate()
+    {
         flush_rewrite_rules();
     }
 }

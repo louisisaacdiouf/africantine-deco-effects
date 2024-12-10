@@ -4,13 +4,18 @@
  */
 namespace Inc\Base;
 
-class Enqueue {
-    public function register() {
-        add_action('admin_enqueue_scripts', [__CLASS__, 'enqueue']);
+class Enqueue extends BaseController
+{
+    public function register()
+    {
+        // Utilisation d'un hook avec une instance de la classe
+        add_action('admin_enqueue_scripts', [$this, 'enqueue']);
     }
-    
-    public static function enqueue() {
-        wp_enqueue_style('mypluginstyle', PLUGIN_URL .'assets/style.css');
-        wp_enqueue_style('mypluginscript', PLUGIN_URL .'assets/script.js');
+
+    public function enqueue()
+    {
+        // Utilisation de $this->plugin_url correctement
+        wp_enqueue_style('mypluginstyle', $this->plugin_url . 'assets/style.css');
+        wp_enqueue_script('mypluginscript', $this->plugin_url . 'assets/script.js');
     }
 }

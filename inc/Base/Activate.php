@@ -2,10 +2,12 @@
 /**
  * @package AfricantineDecoEffects
  */
-namespace Inc;
+namespace Inc\Base;
 
-class Activate {
-    public static function activate() {
+class Activate
+{
+    public static function activate()
+    {
         // Add new table for plugin
         // global $wpdb;
         // $wpdb->query
